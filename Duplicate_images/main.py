@@ -1,24 +1,28 @@
-import tkinter as tk
-from tkinter import filedialog
+from hash_table import *
+from image import choose_directory_and_list_images
+from hash_image import image_hash
+
+all_images = choose_directory_and_list_images()
+table = Table(len(all_images))
+for i in range(len(all_images)):
+    table.Add(all_images[i][1], all_images[i][0])
 
 
-def open_image():
-    filepath = filedialog.askopenfilename(
-        initialdir="C:\\Users\\USER\\Pictures",
-        title="Выберите изображение/дирректорию",
-        filetypes=(("Файлы изображений", "*.png;*.jpg;*.jpeg;*.bmp;*.gif"), ("Все файлы", "*.*"))
-    )
-    return filepath
+while True:
+    print("Add->1\nDelete->2\nSearch->3\nPrint->4\n")
 
-root = tk.Tk()
-root.withdraw()
-
-image_path = open_image()
-
-if image_path:
-    print(f"Путь к изображению: {image_path}")
-    with open(image_path, "rb") as file:
-        image_data = file.read()
-    print(f"Данные изображения загружены: {len(image_data)} байт")
-else:
-    print("Изображение не выбрано.")
+    choose = input("==>")
+    if choose == '1':
+        key = input("Key->  ")
+        data = input("Data-> ")
+        table.Add(key, data)
+    elif choose == '2':
+        key = input("Key-> ")
+        table.delete(key)
+    elif choose == '3':
+        key = input("Key-> ")
+        print(table.find(key))
+    elif choose == '4':
+        print(table.print_table())
+    else:
+        break
