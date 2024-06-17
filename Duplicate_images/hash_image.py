@@ -1,11 +1,13 @@
-import hashlib
+from PIL import Image
+import imagehash
 
 
 def image_hash(file_path):
-    hash_obj = hashlib.md5()
+    image = Image.open(file_path)
+    return imagehash.phash(image)
 
-    with open(file_path, 'rb') as file:
-        while chunk := file.read(8192):
-            hash_obj.update(chunk)
 
-    return hash_obj.hexdigest()
+def hash_comparison(hash1, hash2) -> float:
+    similarity = 1 - (hash1 - hash2) / len(hash1.hash) ** 2
+    return float(f"{similarity * 100:.2f}")
+

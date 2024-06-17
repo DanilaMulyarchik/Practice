@@ -1,7 +1,7 @@
 from element import Element
 from prettytable import PrettyTable
 from typing import List, Optional
-
+from hash_image import hash_comparison
 
 INCREASE = 10
 LENGTH = 100
@@ -12,14 +12,18 @@ class Table:
         self.size = size
         self.count = 0
         self.table: List[Optional[Element]] = [None] * size
+        self.same = []
 # Add
 
+    def Same(self):
+        return self.same
+
     def Add(self, key: str, value: str):
-        if self.count == self.size:
-            self.table = self._add_new_pos()
         node = self.table[hash(key) % self.size]
         while node is not None:
-            if node.key == key:
+            if float(hash_comparison(node.key, key)) > 95:
+                self.same.append(value)
+                self.same.append(node.value)
                 node.value = value
                 return
             node = node.next
@@ -59,46 +63,7 @@ class Table:
             new_table[pos] = new_node
         return new_table
 
-#
-
-# Find
-    def find(self, key: str):
-        node = self.table[hash(key) % self.size]
-        while node is not None:
-            return node.value if node.key == key else node == node.next
-        return "No element ".format(key)
-# Delete
-
-    def delete(self, key: str) -> None:
-        curr_node = self.table[hash(key) % self.size]
-
-        if curr_node.key == key:
-            if curr_node.next is not None:
-                self.__del(hash(key) % self.size, curr_node.next)
-                return
-            elif curr_node.next is None:
-                self.__del(hash(key) % self.size, None)
-                return
-        elif curr_node is None:
-            return
-
-        self._check_for_none(key, curr_node)
-
-    def __del(self, hash_address, val):
-        self.table[hash_address] = val
-        self.count -= 1
-
-    def _check_for_none(self, key, curr_node):
-        while curr_node is not None:
-            if curr_node.key == key:
-                curr_node.previous.next = curr_node.next
-                if curr_node.next is not None:
-                    curr_node.next.previous = curr_node.previous
-                return
-            curr_node = curr_node.next
-#
 # Print
-
     def print_table(self) -> None:
         table = PrettyTable()
         table.field_names = ['Хэш адрес', "Ключ", "Значение"]
@@ -119,5 +84,4 @@ class Table:
             curr_node.value if len(curr_node.value) < LENGTH else curr_node.value[:LENGTH] + '...'
         ])
         return table
-
 #
