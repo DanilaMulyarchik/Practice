@@ -1,7 +1,5 @@
-from PIL import Image
 import shutil
 import os
-import matplotlib.pyplot as plt
 
 
 def copy_to_folder(images: list):

@@ -1,10 +1,17 @@
-from element import Element
 from prettytable import PrettyTable
 from typing import List, Optional
-from hash_image import hash_comparison
+from image import hash_comparison
 
 INCREASE = 10
 LENGTH = 100
+
+
+class Element:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.previous = None
+        self.next = None
 
 
 class Table:
