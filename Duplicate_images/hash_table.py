@@ -18,7 +18,8 @@ class Table:
     def Same(self):
         return self.same
 
-    def Add(self, key: str, value: str):
+    def Add(self, key: str, value: str, i):
+        print(i, ':', hash(key))
         node = self.table[hash(key) % self.size]
         while node is not None:
             if float(hash_comparison(node.key, key)) > 95:
