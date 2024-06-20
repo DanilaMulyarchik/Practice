@@ -1,28 +1,58 @@
-from PIL import Image, ImageDraw, ImageFont
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.dialog import MDDialog
+from kivy.lang import Builder
+from kivymd.app import MDApp
+from kivy.metrics import dp
 
-width, height = 800, 600
-image = Image.new("RGB", (width, height), "white")
-draw = ImageDraw.Draw(image)
+KV = '''
+Screen:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
 
-image2 = Image.new("RGB", (width, height), "white")
-draw2 = ImageDraw.Draw(image2)
+        MDFillRoundFlatButton:
+            text: 'Open Dialog'
+            on_press: app.open_dialog()
+'''
 
-draw2.text((width // 2 - 140, 20), "Image Comparator - Load Images", fill="black")
+class TestApp(MDApp):
+    def build(self):
+        self.theme_cls.theme_style = 'Dark'
+        return Builder.load_string(KV)
 
-draw2.text((50, 70), "Load Images from Folder", fill="black")
-draw2.text((350, 70), "Select Theme", fill="black")
+    def open_dialog(self):
 
-draw2.rectangle([(50, 120), (350, 420)], outline="black", width=2)
-draw2.text((160, 270), "Image 1", fill="gray")
-draw2.rectangle([(450, 120), (750, 420)], outline="black", width=2)
-draw2.text((560, 270), "Image 2", fill="gray")
+        scroll_view = ScrollView()
+        content_box = BoxLayout(orientation='vertical', padding=dp(10))
 
-draw2.rectangle([(300, 450), (500, 490)], outline="black", fill="lightgray")
-draw2.text((350, 455), "Compare", fill="black")
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
+        content_box.add_widget(Label(text=f'Label {1+1}', size_hint_y=None, height=dp(50)))
 
-draw2.text((50, 520), "Similarity: 0%", fill="black")
+        scroll_view.add_widget(content_box)
 
-draw2.rectangle([(600, 520), (750, 560)], outline="black", fill="lightgray")
-draw2.text((630, 525), "Save", fill="black")
+        dialog = MDDialog(
+            title='Scrollable Dialog',
+            type='custom',
+            content_cls=scroll_view,
+            buttons=[
+                MDFillRoundFlatButton(
+                    text='Close', on_release=lambda *args: dialog.dismiss()
+                )
+            ]
+        )
+        dialog.open()
 
-image2.show()
+
+if __name__ == '__main__':
+    TestApp().run()
