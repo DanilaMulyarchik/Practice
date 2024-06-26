@@ -1,4 +1,7 @@
-LT1 = """
+from setting_save.settings_save import settings_read
+def screen1():
+
+    LT1 = """
 ScreenManager:
     Screen:
         name: "first"
@@ -53,76 +56,88 @@ ScreenManager:
                                 icon: 'information-outline'
                                 on_press: app.information()
 
-            BoxLayout:
+            GridLayout:
+                rows: 3
                 height: 100
-                GridLayout
-                    cols: 2
+                row_force_default: True
+                row_default_height: 80
+                vertical_align: 'top'
 
-                    BoxLayout:
-                        orientation: 'vertical'
-
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'
-
-                            BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(10)
-                                padding: dp(10)
-
-                                MDTextField:
-                                    sadding: dp(10)
-                                    id: folder
-                                    hint_text: 'Choose folder'
-                                    size_hint_x: None  
-                                    width: dp(200)
-
-                                MDRaisedButton:
-                                    text: 'Folder'
-
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'            
-
-                            BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(10)
-                                padding: dp(10)
-
-                                MDTextField:
-                                    sadding: dp(10)
-                                    id: folder
-                                    hint_text: 'Write %'
-                                    size_hint_x: None  
-                                    width: dp(200)
-
-                                MDRaisedButton:
-                                    text: 'Work'
-
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'
-
-                            BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(10)
-                                padding: dp(10)
-
-                                MDTextField:
-                                    sadding: dp(10)
-                                    id: folder
-                                    hint_text: 'Choose folder'
-                                    size_hint_x: None  
-                                    width: dp(200)
-
-                                MDRaisedButton:
-                                    text: 'Save'
+                BoxLayout:
+                    orientation: 'vertical'
 
                     AnchorLayout:
-                        FitImage:
-                            id: img_screen_1
-                            source: ""
-                            size_hint_y: None
-                            height: 300
+                        anchor_x: 'center'
+                        anchor_y: 'center'
 
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            padding: dp(10)
+
+                            MDLabel:
+                                id: folder
+                                text: '%folder%'
+                                halign: "left"
+                                size_hint_x: None
+                                width: 500
+                                text_size: self.width, None
+                                
+                            MDRaisedButton:
+                                text: 'Folder'
+                                on_press: app.folder('folder')
+                BoxLayout:
+                
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        anchor_y: 'center'            
+
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            padding: dp(10)
+
+                            MDTextField:
+                                sadding: dp(10)
+                                id: percent
+                                hint_text: 'Write %'
+                                size_hint_x: None  
+                                width: 500
+                                input_filter: "int"
+
+                            MDRaisedButton:
+                                text: 'Work'
+                                on_press: app.compare_folder_img('folder', 'percent')
+
+                BoxLayout:
+                
+                    AnchorLayout:
+                        anchor_x: 'center'
+                        anchor_y: 'center'
+
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            padding: dp(10)
+                            
+                            MDTextField:
+                                sadding: dp(10)
+                                id: save
+                                hint_text: '%save%'
+                                size_hint_x: None  
+                                width: 500
+
+                            MDRaisedButton:
+                                text: 'Save'
+                                on_press: app.save('save')
+                
+                            MDRaisedButton:
+                                text: 'Show'
+                                on_press: app.third_screen()
 """
+
+
+
+    LT1 = LT1.replace('%folder%', settings_read('const'))
+    LT1 = LT1.replace('%save%', settings_read('save'))
+    return LT1

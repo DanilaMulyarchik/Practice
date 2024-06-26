@@ -24,10 +24,10 @@ def get_image_files(directory) -> list:
     return image_files
 
 
-def choose_directory_and_list_images() -> list:
-    root = Tk()
+def choose_directory_and_list_images(directory) -> list:
+    '''    root = Tk()
     root.withdraw()
-    directory = filedialog.askdirectory()
+    directory = filedialog.askdirectory()'''
     if directory:
         images = get_image_files(directory)
         all_images = []

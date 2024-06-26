@@ -1,16 +1,19 @@
 import json
 
 
-def settings_save(path: str) -> None:
-    data = {'path': path}
-    with open('data.json', 'w') as file:
+def settings_save(const_path: str, save_path: str) -> None:
+    data = {'const': const_path, 'save': save_path}
+    with open('front/data.json', 'w') as file:
         json.dump(data, file, indent=4)
 
 
-def settings_read() -> str:
-    with open('data.json', 'r') as file:
+def settings_read(parametr: str) -> str:
+    with open('front/data.json', 'r') as file:
         loaded_data = json.load(file)
-    return loaded_data['path']
+    if parametr == 'const':
+        return loaded_data['const']
+    elif parametr == 'save':
+        return loaded_data['save']
 
 
 

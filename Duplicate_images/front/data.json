@@ -1,3 +1,4 @@
 {
-    "path": "C:/Users/USER/Pictures"
+    "const": "C:/Users/USER/Pictures",
+    "save": "C:/Users/USER/Pictures"
 }

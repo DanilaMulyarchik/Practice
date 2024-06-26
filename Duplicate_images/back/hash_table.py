@@ -1,6 +1,6 @@
 from prettytable import PrettyTable
 from typing import List, Optional
-from image import hash_comparison
+from back.image import hash_comparison
 
 INCREASE = 10
 LENGTH = 100
@@ -15,11 +15,12 @@ class Element:
 
 
 class Table:
-    def __init__(self, size: int):
+    def __init__(self, size: int, percent):
         self.size = size
         self.count = 0
         self.table: List[Optional[Element]] = [None] * size
         self.same = []
+        self.percent = percent
 # Add
 
     def Same(self):
@@ -29,7 +30,7 @@ class Table:
         print(i, ':', hash(key))
         node = self.table[hash(key) % self.size]
         while node is not None:
-            if float(hash_comparison(node.key, key)) > 95:
+            if float(hash_comparison(node.key, key)) >= self.percent:
                 self.same.append(value)
                 self.same.append(node.value)
                 node.value = value

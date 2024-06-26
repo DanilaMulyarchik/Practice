@@ -104,7 +104,7 @@ LT2 = """
 
                         MDRaisedButton:
                             text: 'Work'
-                            on_press: app.work('img_screen_2_1', 'img_screen_2_2')
+                            on_press: app.compare_two_img('img_screen_2_1', 'img_screen_2_2')
 
                 BoxLayout:
 
