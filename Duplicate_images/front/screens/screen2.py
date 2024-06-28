@@ -33,7 +33,7 @@ LT2 = """
 
                             MDIconButton:
                                 icon: "cog-outline"
-                                on_press: app.settings()                    
+                                on_press: app.settings('front')                    
                     BoxLayout:
                         AnchorLayout: 
                             anchor_x: 'left'
@@ -93,7 +93,7 @@ LT2 = """
                         anchor_y: 'center'
 
                         MDRaisedButton:
-                            text: 'Image1'
+                            text: 'Выбрать изображение'
                             on_press: app.image('img_screen_2_1')
                             
                 BoxLayout:
@@ -103,7 +103,7 @@ LT2 = """
                         anchor_y: 'center'
 
                         MDRaisedButton:
-                            text: 'Work'
+                            text: 'Сравнить'
                             on_press: app.compare_two_img('img_screen_2_1', 'img_screen_2_2')
 
                 BoxLayout:
@@ -113,7 +113,7 @@ LT2 = """
                         anchor_y: 'center'
 
                         MDRaisedButton:
-                            text: 'Image2'
+                            text: 'Выбрать изображение'
                             on_press: app.image('img_screen_2_2')
 
 """

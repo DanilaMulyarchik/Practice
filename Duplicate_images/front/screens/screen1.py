@@ -45,7 +45,7 @@ ScreenManager:
 
                             MDIconButton:
                                 icon: "cog-outline"
-                                on_press: app.settings()                    
+                                on_press: app.settings('folder')                    
                     BoxLayout:
                         AnchorLayout: 
                             anchor_x: 'right'
@@ -80,11 +80,11 @@ ScreenManager:
                                 text: '%folder%'
                                 halign: "left"
                                 size_hint_x: None
-                                width: 500
+                                width: 510
                                 text_size: self.width, None
                                 
                             MDRaisedButton:
-                                text: 'Folder'
+                                text: 'Выбрать папку'
                                 on_press: app.folder('folder')
                 BoxLayout:
                 
@@ -100,13 +100,13 @@ ScreenManager:
                             MDTextField:
                                 sadding: dp(10)
                                 id: percent
-                                hint_text: 'Write %'
+                                hint_text: 'Введите процентное соотношение(по умолчанию 100)'
                                 size_hint_x: None  
-                                width: 500
+                                width: 510
                                 input_filter: "int"
 
                             MDRaisedButton:
-                                text: 'Work'
+                                text: 'Поиск дубликатов'
                                 on_press: app.compare_folder_img('folder', 'percent')
 
                 BoxLayout:
@@ -125,14 +125,14 @@ ScreenManager:
                                 id: save
                                 hint_text: '%save%'
                                 size_hint_x: None  
-                                width: 500
+                                width: 510
 
                             MDRaisedButton:
-                                text: 'Save'
+                                text: 'Сохранить'
                                 on_press: app.save('save')
                 
                             MDRaisedButton:
-                                text: 'Show'
+                                text: 'Показать'
                                 on_press: app.third_screen()
 """
 
