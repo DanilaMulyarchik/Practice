@@ -4,7 +4,12 @@ from back.image import hash_comparison, image_hash
 
 
 def answer_dialog(img1, img2):
-
+    '''
+    Создание диологового окно с ответом сравнивнивания двух изображений
+    :param img1: путь к изображению
+    :param img2: путь к изображению
+    :return: Диологовое окно
+    '''
     answer = hash_comparison(image_hash(img1), image_hash(img2))
 
     dialog = MDDialog(

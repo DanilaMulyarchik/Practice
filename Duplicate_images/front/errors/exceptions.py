@@ -3,6 +3,10 @@ from kivymd.uix.dialog import MDDialog
 
 
 def folder_is_empty_exceptions():
+    '''
+    Диологовое окно с ошибкой. Папка пустая
+    :return: Диологовое окно
+    '''
     dialog = MDDialog(
         title="Ошибка",
         text='Папка пустая',
@@ -20,6 +24,10 @@ def folder_is_empty_exceptions():
 
 
 def choose_folder_exceptions():
+    '''
+    Диологовое окно с ошибкой. Папка не выбрана
+    :return: Диологовое окно
+    '''
     dialog = MDDialog(
         title="Ошибка",
         text='Введите название папки для сохранения дубликатов',
@@ -37,6 +45,10 @@ def choose_folder_exceptions():
 
 
 def no_image_selected_exceptions():
+    '''
+    Диологовое окно с ошибкой. Изображение не выбрано
+    :return: Диологовое окно
+    '''
     dialog = MDDialog(
         title="Ошибка",
         text='Изображение не выбрано',
@@ -54,6 +66,10 @@ def no_image_selected_exceptions():
 
 
 def no_same_image_exceptions():
+    '''
+    Диологовое окно с ошибкой. Схожих изображений не найдено
+    :return: Диологовое окно
+    '''
     dialog = MDDialog(
         title="Ошибка",
         text='Похожих изображений не найдено',

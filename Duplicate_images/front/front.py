@@ -37,6 +37,10 @@ from front.errors.exceptions import *
 
 class MainApp(MDApp):
     def build(self):
+        '''
+        Загрузка приложения
+        :return: экран
+        '''
         Window.size = (640, 350)
         Window.minimum_height = 350
         Window.minimum_width = 640
@@ -47,19 +51,34 @@ class MainApp(MDApp):
         return self.screen_manager
 
     def first_screen(self):
+        '''
+        Переключение на первый экран
+        '''
         self.screen_manager.transition.direction = 'right'
         self.screen_manager.current = 'first'
 
     def second_screen(self):
+        '''
+        Переключение на второй экран
+        :return:
+        '''
         self.screen_manager.transition.direction = 'left'
         self.screen_manager.current = 'second'
 
     def third_screen(self):
+        '''
+        Переключение на третий экран
+        :return:
+        '''
         self.show()
         self.screen_manager.transition.direction = 'left'
         self.screen_manager.current = 'third'
 
     def image(self, img_id: str):
+        '''
+        Открывает встроенный проводник от KivyMD и вставка изображения в окно для изображений
+        :param img_id: id поля для изображений
+        '''
         def exit_manager(self):
             self.manager_open = False
             self.file_manager.close()
@@ -80,6 +99,9 @@ class MainApp(MDApp):
         self.manager_open = True
 
     def change_color(self):
+        '''
+        Меняет тему приложения (светлая/тёмная)
+        '''
         if self.theme_cls.theme_style == 'Dark':
             self.theme_cls.theme_style = 'Light'
             self.root.ids.theme_button.icon = 'weather-sunny'
@@ -88,6 +110,9 @@ class MainApp(MDApp):
             self.root.ids.theme_button.icon = 'weather-night'
 
     def update_label_text(self):
+        '''
+        Меняет отображаемый путь к дирректории на первом экране
+        '''
         try:
             label_text = settings_read('const')
             self.root.ids[self.label_id].text = label_text
@@ -95,13 +120,25 @@ class MainApp(MDApp):
             pass
 
     def settings(self, label_id):
+        '''
+        Открывает диологовое окно с настройками
+        :param label_id: id поля с путём для выбранной дирректории
+        '''
         self.label_id = label_id
         setting_dialog(self.update_label_text)
 
     def information(self):
+        '''
+        Открывает диологовое окно с информацией
+        :return:
+        '''
         return information_dialog()
 
     def save(self, path):
+        '''
+        Сохраняет все схожие изображения в выбранную папку
+        :param path: путь к папке для сохраненния
+        '''
         path = self.root.ids[path].text
         if path == '':
             choose_folder_exceptions()
@@ -112,6 +149,10 @@ class MainApp(MDApp):
         self.save_path = path
 
     def show(self):
+        '''
+        Создания поля для отображения изображений
+        :return:
+        '''
         if self.same == []:
             no_same_image_exceptions()
             return
@@ -120,7 +161,7 @@ class MainApp(MDApp):
         grid = self.root.ids.grid
         grid.children.clear()
         for filename in self.same:
-            if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+            if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
                 image_path = os.path.join(directory, filename)
                 try:
                     img = PILImage.open(image_path)
@@ -131,6 +172,12 @@ class MainApp(MDApp):
                     print(f"Проблема с изображением {filename}: {e}")
 
     def compare_two_img(self, id1, id2):
+        '''
+        Передача двух изображений в функцию для сравнивания
+        :param id1: id поля с изображениями
+        :param id2: id поля с изображениями
+        :return: диологовое окно с ответом
+        '''
         formats = ('.png', '.jpg', '.jpeg')
         img1: str = self.root.ids[id1].source
         img2: str = self.root.ids[id2].source
@@ -142,6 +189,11 @@ class MainApp(MDApp):
         return answer_dialog(img1, img2)
 
     def compare_folder_img(self, path, percent):
+        '''
+        Передача путя к дирректории с изображениями в функцию для сравнивания
+        :param path: путь к дирректории с изображениями
+        :param percent: прцент схожости
+        '''
         path = self.root.ids[path].text
         percent = self.root.ids[percent].text
 
@@ -160,6 +212,10 @@ class MainApp(MDApp):
         self.same = table.Same()
 
     def folder(self, text_label):
+        '''
+        Открывает встроенный проводник от KivyMD
+        :param text_label: текст содержащий путь к дирректории
+        '''
         def exit_manager(self):
             self.manager_open = False
             self.file_manager.close()

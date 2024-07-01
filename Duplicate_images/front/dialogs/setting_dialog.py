@@ -9,6 +9,11 @@ from setting_save.settings_save import settings_save, settings_read
 
 
 def setting_dialog(update_label_text):
+    '''
+    Создание диологового окно с настройками
+    :param update_label_text: функция которая обнавляет текст на первом экране
+    :return: Диологовое окно
+    '''
     content = MDBoxLayout(orientation="vertical", spacing="12dp", size_hint_y=None, height="150dp")
     text_field1 = MDTextField(id='lable', hint_text=settings_read('const'), multiline=False, size_hint_y=None,height="48dp",)
     text_field2 = MDTextField(id='lable', hint_text=settings_read('save'), multiline=False, size_hint_y=None, height="48dp", )
@@ -20,7 +25,7 @@ def setting_dialog(update_label_text):
     content.add_widget(text_field2)
 
     dialog = MDDialog(
-        title="Setting",
+        title="Настройки",
         type="custom",
         content_cls=content,
         buttons=[
