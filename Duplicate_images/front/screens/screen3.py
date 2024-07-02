@@ -40,7 +40,7 @@ LT3 = '''
     
                             MDIconButton:
                                 icon: "cog-outline"
-                                on_press: app.settings()                    
+                                on_press: app.settings('front')               
                     BoxLayout:
                         AnchorLayout: 
                             anchor_x: 'right'
