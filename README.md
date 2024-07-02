@@ -21,7 +21,7 @@
 
 ## How to start
 ```sh
-git clone https://github.com/DanilaMulyarchik/Practice/.git
+git clone https://github.com/DanilaMulyarchik/Practice.git
 cd Practice/Duplicate_images
 python main.py
 ```
