@@ -207,7 +207,7 @@ class MainApp(MDApp):
 
         table = Table(len(all_images), int(percent))
         for i in range(len(all_images)):
-            table.Add(image_hash(all_images[i]), all_images[i], i + 1)
+            table.Add(image_hash(all_images[i]), all_images[i])
 
         self.same = table.Same()
 
