@@ -9,16 +9,14 @@
 ## Content
 - [Technologies](#id_technologies)
 - [How to start](#how_to_start)
-
+- [Addition](#addition)
 
 <a id='id_technologies'></a>
-
 ## Technologies
 - [KivyMD](https://kivymd.readthedocs.io/en/latest/)
 - [Pillow](https://python-pillow.org)
 
 <a id='how_to_start'></a>
-
 ## How to start
 ```sh
 git clone https://github.com/DanilaMulyarchik/Practice.git
@@ -26,3 +24,8 @@ cd Practice/Duplicate_images
 python main.py
 ```
 
+<a id='addition'></a>
+## Addition 
+При первом запуске необходимо зайти в настройки и указать стартовые пути для 
+выбора дирректорий с изображениями и дирректории с папками содержащие дубликаты
+изображений 
