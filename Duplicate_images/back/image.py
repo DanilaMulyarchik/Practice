@@ -4,7 +4,7 @@ from PIL import Image
 import imagehash
 
 
-def image_hash(file_path):
+def get_image_hash(file_path):
     '''
     Подсчёт хэша изображения
     :param file_path: путь к изображению
@@ -14,7 +14,7 @@ def image_hash(file_path):
     return imagehash.phash(image)
 
 
-def hash_comparison(hash1, hash2) -> float:
+def get_hash_comparison(hash1, hash2) -> float:
     """
     Разница хэшей в процентном соотношении
     :param hash1: хэш первого изображения

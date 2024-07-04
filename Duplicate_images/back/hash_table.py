@@ -1,6 +1,5 @@
-from prettytable import PrettyTable
 from typing import List, Optional
-from back.image import hash_comparison
+from back.image import get_hash_comparison
 
 INCREASE = 10
 LENGTH = 100
@@ -23,7 +22,7 @@ class Table:
         self.percent = percent
 # Add
 
-    def Same(self):
+    def Get_same(self):
         '''
         :return: список сзожих изображений
         '''
@@ -37,7 +36,7 @@ class Table:
         '''
         node = self.table[hash(key) % self.size]
         while node is not None:
-            if float(hash_comparison(node.key, key)) >= self.percent:
+            if float(get_hash_comparison(node.key, key)) >= self.percent:
                 self.same.append(value)
                 self.same.append(node.value)
                 node.value = value

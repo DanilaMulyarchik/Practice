@@ -1,4 +1,4 @@
-from setting_save.settings_save import settings_read
+from setting_manager.setting_manager import settings_read
 
 
 def screen1():

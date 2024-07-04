@@ -5,10 +5,10 @@ from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 
 
-from setting_save.settings_save import settings_save, settings_read
+from setting_manager.setting_manager import settings_save, settings_read
 
 
-def setting_dialog(update_label_text):
+def create_setting_dialog(update_label_text):
     '''
     Создание диологового окно с настройками
     :param update_label_text: функция которая обнавляет текст на первом экране

@@ -7,17 +7,17 @@ from kivymd.uix.label import MDLabel
 import threading
 
 #Диологи
-from front.dialogs.setting_dialog import setting_dialog
-from front.dialogs.information_dialog import information_dialog
-from front.dialogs.answer_dialog import answer_dialog
+from front.dialogs.setting_dialog import create_setting_dialog
+from front.dialogs.information_dialog import create_information_dialog
+from front.dialogs.answer_dialog import create_answer_dialog
 
 #Экраны
-from front.screens.screen1 import screen1
-from front.screens.screen2 import LT2
-from front.screens.screen3 import LT3
+from front.screens.main_screen import screen1
+from front.screens.Compare_two_images_screen import LT2
+from front.screens.shaw_screen import LT3
 
 #Парсер для файла с настройками
-from setting_save.settings_save import settings_read
+from setting_manager.setting_manager import settings_read
 
 #Функционал
 from back.hash_table import *
@@ -125,14 +125,14 @@ class MainApp(MDApp):
         :param label_id: id поля с путём для выбранной дирректории
         '''
         self.label_id = label_id
-        setting_dialog(self.update_label_text)
+        create_setting_dialog(self.update_label_text)
 
     def information(self):
         '''
         Открывает диологовое окно с информацией
         :return:
         '''
-        return information_dialog()
+        return create_information_dialog()
 
     def save(self, path):
         '''
@@ -186,7 +186,7 @@ class MainApp(MDApp):
             no_image_selected_exceptions()
             return
 
-        return answer_dialog(img1, img2)
+        return create_answer_dialog(img1, img2)
 
     def compare_folder_img(self, path, percent):
         '''
@@ -207,9 +207,9 @@ class MainApp(MDApp):
 
         table = Table(len(all_images), int(percent))
         for i in range(len(all_images)):
-            table.Add(image_hash(all_images[i]), all_images[i])
+            table.Add(get_image_hash(all_images[i]), all_images[i])
 
-        self.same = table.Same()
+        self.same = table.Get_same()
 
     def folder(self, text_label):
         '''

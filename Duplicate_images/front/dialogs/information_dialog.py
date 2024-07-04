@@ -2,7 +2,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 
 
-def information_dialog():
+def create_information_dialog():
     '''
     Создание диологового окно с игформацией о приложении
     :return: Диологовое окно

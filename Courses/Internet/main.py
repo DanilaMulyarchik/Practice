@@ -48,5 +48,5 @@ try:
     print(cookie_value, '<-- значение Cookie')
 
 finally:
-    
+
     driver.quit()
